@@ -1,3 +1,8 @@
+'''
+Программа - справочник. Для добавления/редактирования/ пользователей в файл my_phonebook.csv
+'''
+
+
 def work_with_phonebook():
     stop_all = 'No'
     choice = show_menu(stop_all)
