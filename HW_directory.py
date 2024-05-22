@@ -134,4 +134,3 @@ def write_csv(my_phonebook, phone_book):
     return 'Справочник сохранен!'
 
 
-work_with_phonebook()
