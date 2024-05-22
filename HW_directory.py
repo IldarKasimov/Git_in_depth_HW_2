@@ -12,21 +12,21 @@ def work_with_phonebook():
             if choice_menu_2 == 1:
                 search_value = input('Введите Фамилию: ')
                 key_d = 'Фамилия'
-                print(*(find_by_key_d(phone_book, search_value, key_d)), sep=',''\n')
+                print(*(find_by_key_d(phone_book, search_value, key_d)), sep = ',''\n')
             elif choice_menu_2 == 2:
                 search_value = input('Введите Имя: ')
                 key_d = 'Имя'
-                print(*(find_by_key_d(phone_book, search_value, key_d)), sep=',''\n')
+                print(*(find_by_key_d(phone_book, search_value, key_d)), sep = ',''\n')
             elif choice_menu_2 == 3:
                 search_value = input('Введите Телефон: ')
                 key_d = 'Телефон'
-                print(*(find_by_key_d(phone_book, search_value, key_d)), sep=',''\n')
+                print(*(find_by_key_d(phone_book, search_value, key_d)), sep = ',''\n')
             elif choice_menu_2 == 4:
                 search_value = input('Введите Описание: ')
                 key_d = 'Описание'
-                print(*(find_by_key_d(phone_book, search_value, key_d)), sep=',''\n')
+                print(*(find_by_key_d(phone_book, search_value, key_d)), sep = ',''\n')
         elif choice == 3:
-            lst = []
+            lst =[]
             lst.append(input('Введидте Фамилию: '))
             lst.append(input('Введидте Имя: '))
             lst.append(input('Введидте Телефон: '))
@@ -35,7 +35,7 @@ def work_with_phonebook():
         elif choice == 4:
             last_name_del = input('Введите Фамилию удаляемого абонента: ')
             name_del = input('Введите Имя удаляемого абонента: ')
-            print(*(del_subscriber(phone_book, last_name_del, name_del)), sep='')
+            print(*(del_subscriber(phone_book, last_name_del, name_del)), sep = '')
         elif choice == 5:
             print(write_csv('my_phonebook.csv', phone_book))
         elif choice == 6:
@@ -61,28 +61,37 @@ def show_menu(stop_all):
         return 7
     else:
         print("\nВыберите необходимое действие:\n"
-              "1. Отобразить весь справочник\n"
-              "2. Найти абонента\n"
-              "3. Добавить абонента в справочник\n"
-              "4. Удалить абонента из справочника по фамилии и имени\n"
-              "5. Сохранить справочник в csv\n"
-              "6. Закончить работу\n")
+          "1. Отобразить весь справочник\n"
+          "2. Найти абонента\n"
+          "3. Добавить абонента в справочник\n"
+          "4. Удалить абонента из справочника по фамилии и имени\n"
+          "5. Сохранить справочник в csv\n"
+          "6. Закончить работу\n")
     choice = int(input())
     return choice
+
+
+def show_menu_2():
+    print("\n1. По фамилии\n"
+         "2. По имени\n"
+         "3. По телефону\n"
+         "4. По описанию\n")
+    choice_menu_2 = int(input())
+    return choice_menu_2
 
 
 def read_csv(my_phonebook):
     phone_book = []
     fields = ['Фамилия', 'Имя', 'Телефон', 'Описание']
-    with open('my_phonebook.csv', 'r', encoding='utf-8') as phb:
+    with open('my_phonebook.csv','r',encoding='utf-8') as phb:
         for line in phb:
-            record = dict(zip(fields, line.rstrip('\n').split(',')))
-            phone_book.append(record)
-    return phone_book
+           record = dict(zip(fields, line.rstrip('\n').split(',')))
+           phone_book.append(record)
+    return phone_book 
 
 
 def print_result(phone_book):
-    return print(*phone_book, sep=',''\n')
+    return print(*phone_book, sep = ',''\n')
 
 
 def find_by_key_d(phone_book, search_value, key_d):
@@ -96,7 +105,7 @@ def find_by_key_d(phone_book, search_value, key_d):
         return list_search_value
     return key_d, search_value, 'отстутсвует в справочнике'
 
-
+    
 def add_subscriber(phone_book, fields, lst):
     phone_book.append(dict(zip(fields, lst)))
     return 'Добавили абонента:', lst[:-2]
@@ -120,12 +129,14 @@ def del_subscriber(phone_book, last_name_del, name_del):
 
 
 def write_csv(my_phonebook, phone_book):
-    with open('my_phonebook.csv', 'w', encoding='utf-8') as subscriber:
-        for i in range(len(phone_book)):
-            s = ''
-            for v in phone_book[i].values():
-                s += v + ','
-            subscriber.write(f'{s[:-1]}\n')
-    return 'Справочник сохранен!'
+        with open('my_phonebook.csv', 'w' ,encoding='utf-8') as subscriber:
+            for i in range(len(phone_book)):
+                s='' 
+                for v in phone_book[i].values():
+                    s += v+','
+                subscriber.write(f'{s[:-1]}\n')
+        return 'Справочник сохранен!'
 
+
+work_with_phonebook()
 
